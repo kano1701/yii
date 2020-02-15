@@ -9,7 +9,10 @@ class NewController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $connection = Yii::$app->db;
+        $command = $connection->CreateCommand("SELECT * FROM book");
+        $rows = $command->queryAll();
+        return $this->render('index', ['rows' => $rows]);
     }
 
     public function actionMyPage()
