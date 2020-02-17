@@ -19,10 +19,10 @@ class m200216_183625_add_foreign_keys extends Migration
         );
 
         $this->addForeignKey(
-            'style', 
+            'publisher', 
             'book', 
-            'style', 
-            'style', 
+            'publisher', 
+            'publisher', 
             'id', 
             'CASCADE'
         );
@@ -30,8 +30,9 @@ class m200216_183625_add_foreign_keys extends Migration
 
     public function down()
     {
-        echo "m200216_183625_add_foreign_keys cannot be reverted.\n";
-
-        return false;
+        $this->dropForeignKey('style', 'book');
+        $this->dropForeignKey('publisher', 'book');
+        
+        return 'Внешние ключи удалены';
     }
 }
